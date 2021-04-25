@@ -29,7 +29,7 @@ body {
 @media (max-width: 700px) {
   #header {
     font-size: 3.4vh;
-    height: 8vh;
+    height: 5vh;
   }
 }
 
@@ -42,6 +42,12 @@ body {
   border-radius: 0.5vh;
   padding: 2vh;
   margin-bottom: 1vh;
+}
+
+@media (max-width: 700px) {
+  #messages {
+    height: 70vh;
+  }
 }
 
 #new-message {
