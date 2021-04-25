@@ -20,10 +20,6 @@ app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-server.listen(3000, () => {
-  console.log("Server running...")
-});
-
 io.on("connection", (socket) => {
   console.log("User connected: " + socket.id);
   socket.emit("messages", messages);
@@ -52,4 +48,8 @@ io.on("connection", (socket) => {
     socket.emit("messages", messages);
     socket.broadcast.emit("messages", messages);
   })
+});
+
+server.listen(process.env.PORT || 3000, () => {
+  console.log("Server running...")
 });

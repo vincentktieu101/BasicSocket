@@ -11,9 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/vincentktieu101/BasicSocket.git"
   },
-  "keywords": [
-    "heroku"
-  ],
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
