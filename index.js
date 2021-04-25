@@ -2,10 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const server = require("http").createServer(app);
-const io = require("socket.io")(server, { transports : ['websocket'] });
-const cors = require("cors");
-
-
+const io = require("socket.io")(server, { cors: {origin: "*" }});
 var messages = [
   "hi!!!",
   "welcome",
