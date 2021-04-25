@@ -24,13 +24,11 @@
     <hr />
     <h2 id="message-9"></h2>
     <hr />
-    <form>
-      <h2>
-        Type to Chat!
-        <input type="text" id="message"></input>
-        <button onclick="sendMessage()" id="sendMessageBtn">Send Button</button>
-      </h2>
-    </form>
+    <div>
+      <label for="message">Type to Chat!</label>
+      <input type="text" id="message"></input>
+      <button onclick="sendMessage()">Send Button</button>
+    </div>
 
     <script>
       const socket = io.connect("http://localhost:3000");
@@ -47,7 +45,11 @@
       });
 
       const sendMessage = () => {
+        if (message.value === "") {
+          return;
+        }
         socket.emit("message", message.value);
+        message.value = "";
       };
 
       socket.on("messages", (messages) => {

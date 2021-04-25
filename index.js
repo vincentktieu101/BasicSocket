@@ -4,11 +4,11 @@ const path = require("path");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, { cors: {origin: "*" }});
 var messages = [
-  "",
-  "",
-  "",
-  "",
-  "",
+  "hi!!!",
+  "welcome",
+  "to",
+  "my",
+  "app!",
   "type",
   "stuff",
   "to",
@@ -31,24 +31,25 @@ io.on("connection", (socket) => {
   socket.on("message", (message) => {
     if (message === "/clear") {
       messages = [
-        "",
-        "",
-        "",
-        "",
-        "",
+        "hi!!!",
+        "welcome",
+        "to",
+        "my",
+        "app!",
         "type",
         "stuff",
         "to",
         "chat",
         ":)",
       ]
-      return;
+    } else {
+      console.log("new message: " + message);
+      for (let i = 0; i < messages.length - 1; i++) {
+        messages[i] = messages[i+1];
+      }
+      messages[messages.length - 1] = message;
     }
-    console.log("new message: " + message);
-    for (let i = 0; i < messages.length - 1; i++) {
-      messages[i] = messages[i+1];
-    }
-    messages[messages.length - 1] = message;
+    socket.emit("messages", messages);
     socket.broadcast.emit("messages", messages);
   })
 });
