@@ -3,17 +3,27 @@ const app = express();
 const path = require("path");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, { cors: {origin: "*" }});
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({extended: false})); 
+app.use(express.static(path.join(__dirname)));
+
 var messages = [
-  "hi!!!",
-  "welcome",
-  "to",
-  "my",
-  "app!",
-  "type",
-  "stuff",
-  "to",
-  "chat",
-  ":)",
+  "...",
+  "...",
+  "...",
+  "...",
+  "...",
+  "...",
+  "...",
+  "...",
+  "...",
+  "...",
+  "...",
+  "...",
+  "...",
+  "...",
+  "...",
 ]
 
 app.get("/", function(req, res) {
@@ -27,16 +37,21 @@ io.on("connection", (socket) => {
   socket.on("message", (message) => {
     if (message === "/clear") {
       messages = [
-        "hi!!!",
-        "welcome",
-        "to",
-        "my",
-        "app!",
-        "type",
-        "stuff",
-        "to",
-        "chat",
-        ":)",
+        "...",
+        "...",
+        "...",
+        "...",
+        "...",
+        "...",
+        "...",
+        "...",
+        "...",
+        "...",
+        "...",
+        "...",
+        "...",
+        "...",
+        "...",
       ]
     } else {
       console.log("new message: " + message);

@@ -2,40 +2,50 @@
 <html lang="en">
   <head>
     <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <h2 id="message-0"></h2>
-    <hr />
-    <h2 id="message-1"></h2>
-    <hr />
-    <h2 id="message-2"></h2>
-    <hr />
-    <h2 id="message-3"></h2>
-    <hr />
-    <h2 id="message-4"></h2>
-    <hr />
-    <h2 id="message-5"></h2>
-    <hr />
-    <h2 id="message-6"></h2>
-    <hr />
-    <h2 id="message-7"></h2>
-    <hr />
-    <h2 id="message-8"></h2>
-    <hr />
-    <h2 id="message-9"></h2>
-    <hr />
-    <div>
-      <label for="message">Type to Chat!</label>
-      <input type="text" id="message"></input>
-      <button onclick="sendMessage()">Send Button</button>
+    <div id="layout">
+      <div id="header">
+        <b>Vincent Tieu's Chat App!</b>
+      </div>
+      <div id="messages">
+        <div id="message-0">Loading...</div><hr />
+        <div id="message-1">Loading...</div><hr />
+        <div id="message-2">Loading...</div><hr />
+        <div id="message-3">Loading...</div><hr />
+        <div id="message-4">Loading...</div><hr />
+        <div id="message-5">Loading...</div><hr />
+        <div id="message-6">Loading...</div><hr />
+        <div id="message-7">Loading...</div><hr />
+        <div id="message-8">Loading...</div><hr />
+        <div id="message-9">Loading...</div><hr />
+        <div id="message-10">Loading...</div><hr />
+        <div id="message-11">Loading...</div><hr />
+        <div id="message-12">Loading...</div><hr />
+        <div id="message-13">Loading...</div><hr />
+        <div id="message-14">Loading...</div>
+      </div>
+      <div id="new-message">
+        <div id="message-label">Type to Chat!</div>
+        <div id="message-form">
+          <input type="text" id="message-input"></input>
+          <button id="message-btn" onclick="sendMessage()">Send Button</button>
+        </div>
+      </div>
     </div>
 
     <script>
-      const socket = io.connect("https://vincentktieu101chat.herokuapp.com/");
+      // const socket = io.connect("https://vincentktieu101chat.herokuapp.com/");
+      const socket = io.connect("http://localhost:3000");
 
       socket.on("connection");
 
-      const message = document.getElementById("message");
+      const messages = document.getElementById("messages");
+      messages.scrollTop = messages.scrollHeight;
+
+      const message = document.getElementById("message-input");
       
       message.addEventListener("keyup", function(event) {
         event.preventDefault();
