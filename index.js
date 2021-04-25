@@ -22,7 +22,7 @@ app.get("/", function(req, res) {
 
 server.listen(3000, () => {
   console.log("Server running...")
-})
+});
 
 io.on("connection", (socket) => {
   console.log("User connected: " + socket.id);
