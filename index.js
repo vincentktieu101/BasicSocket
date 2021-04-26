@@ -4,11 +4,9 @@ const path = require("path");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, { cors: {origin: "*" }});
 app.use(express.static(path.join(__dirname)));
+const { loadJSON, saveJSON } = require("./fs");
 
-var messages = [];
-for (let i = 0; i < 20; i++) {
-  messages.push("...");
-}
+var messages = loadJSON("data.json");
 
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
@@ -21,19 +19,15 @@ io.on("connection", (socket) => {
   socket.on("message", (message) => {
     if (message === "/clear") {
       messages = [];
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 15; i++) {
         messages.push("...");
       }
-      socket.emit("messages", messages);
-      socket.broadcast.emit("messages", messages);
-      return;
+    } else {
+      console.log("new message: " + message);
+      messages.shift();
+      messages.push(message);
+      saveJSON("data.json", messages);
     }
-    
-    console.log("new message: " + message);
-    for (let i = 0; i < messages.length - 1; i++) {
-      messages[i] = messages[i+1];
-    }
-    messages[messages.length - 1] = message;
     socket.emit("messages", messages);
     socket.broadcast.emit("messages", messages);
   })
