@@ -1,8 +1,5 @@
 body {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
-  overflow-y: hidden;
-  height: 100vh;
-  width: 100vw;
   margin: 0px;
   padding: 0px;
 }
@@ -12,6 +9,7 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   padding: 0 1vw;
+  overflow-y: hidden;
 }
 
 @media (max-width: 700px) {
@@ -22,19 +20,19 @@ body {
 
 #header {
   height: 8vh;
-  font-size: 5vh;
+  font-size: 50px;
   text-align: center;
 }
 
 @media (max-width: 700px) {
   #header {
-    font-size: 3.4vh;
+    font-size: 26px;
     height: 5vh;
   }
 }
 
 #messages {
-  font-size: 3vh;
+  font-size: 26px;
   height: 80vh;
   overflow-y: auto;
   box-sizing: border-box;
@@ -55,7 +53,7 @@ body {
 }
 
 #message-label {
-  font-size: 2vh;
+  font-size: 16px;
   margin-bottom: 10px;
 }
 
@@ -70,7 +68,7 @@ body {
   border: 1.5px solid rgb(94, 94, 94);
   border-radius: 4px;
   margin-right: 0.5vw;
-  font-size: 3vh;
+  font-size: 26px;
 }
 
 #message-btn {
@@ -78,5 +76,5 @@ body {
   border-radius: 4px;
   background-color: #007bff;
   color: white;
-  font-size: 2vh;
+  font-size: 16px;
 }
