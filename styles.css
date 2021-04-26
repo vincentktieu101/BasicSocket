@@ -8,14 +8,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0 1vw;
+  padding: 0 10px;
   overflow-y: hidden;
-}
-
-@media (max-width: 700px) {
-  #layout {
-    padding: 0 5vw;
-  }
 }
 
 #header {
@@ -67,7 +61,7 @@ body {
   width: 100%;
   border: 1.5px solid rgb(94, 94, 94);
   border-radius: 4px;
-  margin-right: 0.5vw;
+  margin-right: 5px;
   font-size: 26px;
 }
 
