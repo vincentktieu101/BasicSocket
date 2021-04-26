@@ -3,10 +3,8 @@ const app = express();
 const path = require("path");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, { cors: {origin: "." }});
-app.use(express.static(path.join(__dirname)));
 const { loadJSON, saveJSON } = require("./fs");
-
-var messages = loadJSON("data.json");
+app.use(express.static(path.join(__dirname)));
 
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
@@ -14,6 +12,7 @@ app.get("/", function(req, res) {
 
 io.on("connection", (socket) => {
   console.log("User connected: " + socket.id);
+  var messages = loadJSON("data.json");
   socket.emit("messages", messages);
 
   socket.on("message", (message) => {
@@ -26,8 +25,8 @@ io.on("connection", (socket) => {
       console.log("new message: " + message);
       messages.shift();
       messages.push(message);
-      saveJSON("data.json", messages);
     }
+    saveJSON("data.json", messages);
     socket.emit("messages", messages);
     socket.broadcast.emit("messages", messages);
   })
