@@ -4,7 +4,7 @@ const path = require("path");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, { cors: {origin: "." }});
 const { loadJSON, saveJSON } = require("./fs");
-app.use(express.static(path.join(__dirname, "../build")));
+app.use(express.static(path.join(__dirname, "../../build")));
 
 // app.get("/", function(req, res) {
 //   res.sendFile(path.join(__dirname + '/index.html'));
@@ -36,8 +36,8 @@ io.on("connection", (socket) => {
   })
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../../build/index.html'));
 });
 
 server.listen(process.env.PORT || 3001, () => {

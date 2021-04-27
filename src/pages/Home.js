@@ -1,41 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Layout from "../components/Layout";
 import Container from "react-bootstrap/Container";
 import getUser from "../utils/get-user";
 
-const textStyle = {maxWidth: "100%", width: "700px"}
-
 export default function Home() {
   const user = getUser();
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
 
   return (
     <Layout user={user}>
       <Container>
-        <h1>Hello! This is the Home page!</h1>
-        <div style={textStyle}>
-          This project was built in React, specically in Create React App
-          (the officially supported version of React developed by Facebook).
-          This starter code will focus on setting up Google Authentication and 
-          demonstrating examples of public and private pages. Notice that the
-          {" "}<a href="/profile">Profile</a> page is not located in
-          the NavBar until you login.
+        <div id="messages">
+          <div id="message-0">Loading...</div><hr />
+          <div id="message-1">Loading...</div><hr />
+          <div id="message-2">Loading...</div><hr />
+          <div id="message-3">Loading...</div><hr />
+          <div id="message-4">Loading...</div><hr />
+          <div id="message-5">Loading...</div><hr />
+          <div id="message-6">Loading...</div><hr />
+          <div id="message-7">Loading...</div><hr />
+          <div id="message-8">Loading...</div><hr />
+          <div id="message-9">Loading...</div><hr />
+          <div id="message-10">Loading...</div><hr />
+          <div id="message-11">Loading...</div><hr />
+          <div id="message-12">Loading...</div><hr />
+          <div id="message-13">Loading...</div><hr />
+          <div id="message-14">Loading...</div>
         </div>
-        <br />
-        <div style={textStyle}>
-          This Home page is a public page, meaning that users can view 
-          this page without logging in. The Profile page is a private 
-          page, meaning that users have to login.
+        <div id="new-message">
+          <div id="message-label">Type to Chat!</div>
+          <div id="message-form">
+            <input type="text" id="message-input"></input>
+            <button id="message-btn" onclick="sendMessage()">Send Button</button>
+          </div>
         </div>
-        <br />
-        <div>{data}</div>
-        <br />
       </Container>
     </Layout>
   );
