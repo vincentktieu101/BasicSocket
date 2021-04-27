@@ -45,7 +45,7 @@
     ]
   },
   "engines": {
-    "node": "your-node-version"
+    "node": "12.14.0"
   },
   "proxy": "http://localhost:3001"
 }
