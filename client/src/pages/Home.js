@@ -34,6 +34,8 @@ export default function Home() {
           page, meaning that users have to login.
         </div>
         <br />
+        <div>{data}</div>
+        <br />
       </Container>
     </Layout>
   );

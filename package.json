@@ -1,24 +1,24 @@
 {
-  "name": "BasicSocket",
+  "name": "ChatApp",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon start",
-    "build": "cd ../client && npm install && npm run build"
+    "start": "nodemon server/index.js",
+    "build": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vincentktieu101/BasicSocket.git"
+    "url": "git+https://github.com/vincentktieu101/ChatApp.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vincentktieu101/BasicSocket/issues"
+    "url": "https://github.com/vincentktieu101/ChatApp/issues"
   },
-  "homepage": "https://github.com/vincentktieu101/BasicSocket#readme",
+  "homepage": "https://github.com/vincentktieu101/ChatApp#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
