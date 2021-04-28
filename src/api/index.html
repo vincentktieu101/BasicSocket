@@ -25,7 +25,7 @@
         <div id="message-11">Loading...</div><hr />
         <div id="message-12">Loading...</div><hr />
         <div id="message-13">Loading...</div><hr />
-        <div id="message-14">Loading...</div>
+        <div id="message-14">Loading...</div><hr />
       </div>
       <div id="new-message">
         <div id="message-label">Type to Chat!</div>
@@ -37,8 +37,8 @@
     </div>
 
     <script>
-      const socket = io.connect("https://vincentktieu-chat.herokuapp.com/");
-      // const socket = io.connect("http://localhost:3001");
+      // const socket = io.connect("https://vincentktieu-chat.herokuapp.com/");
+      const socket = io.connect("http://localhost:3001");
 
       socket.on("connection");
 

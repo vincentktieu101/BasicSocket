@@ -1,38 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
+import socketIOClient from "socket.io-client";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+
 import Layout from "../components/Layout";
 import Container from "react-bootstrap/Container";
 import getUser from "../utils/get-user";
 
 export default function Home() {
   const user = getUser();
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState("");
+
+  const socket = socketIOClient("http://localhost:3001");
+  
+  var sendMessage = (e) => {
+    e.preventDefault();
+    if (message === "") {
+      return;
+    }
+    if (!user) {
+      socket.emit("message", "Anonymous: " + message);
+      setMessage("");
+    } else {
+      socket.emit("message", user.fullName + ": " + message);
+      setMessage("");
+    }
+  };
+
+  React.useEffect(() => {
+    socket.on("connection");
+
+    socket.on("messages", (messages) => {
+      setMessages(messages);
+      const messagesView = document.getElementById("messages-view");
+      messagesView.scrollTop = messagesView.scrollHeight;
+    });
+  }, [])
+
+  const Messages = [];
+  for (let i = 0; i < 15; i++) {
+    Messages.push(
+      <div key={i}>
+        <div id="message">{messages[i]}</div>
+        { i !==14 ?  <hr /> : <br />}
+      </div>
+    );
+  }
 
   return (
-    <Layout user={user}>
+    <Layout>
       <Container>
-        <div id="messages">
-          <div id="message-0">Loading...</div><hr />
-          <div id="message-1">Loading...</div><hr />
-          <div id="message-2">Loading...</div><hr />
-          <div id="message-3">Loading...</div><hr />
-          <div id="message-4">Loading...</div><hr />
-          <div id="message-5">Loading...</div><hr />
-          <div id="message-6">Loading...</div><hr />
-          <div id="message-7">Loading...</div><hr />
-          <div id="message-8">Loading...</div><hr />
-          <div id="message-9">Loading...</div><hr />
-          <div id="message-10">Loading...</div><hr />
-          <div id="message-11">Loading...</div><hr />
-          <div id="message-12">Loading...</div><hr />
-          <div id="message-13">Loading...</div><hr />
-          <div id="message-14">Loading...</div>
+        <br />
+        <div id="messages-view">
+          {Messages}
         </div>
-        <div id="new-message">
-          <div id="message-label">Type to Chat!</div>
-          <div id="message-form">
-            <input type="text" id="message-input"></input>
-            <button id="message-btn" onclick="sendMessage()">Send Button</button>
-          </div>
-        </div>
+        <br />
+        <form id="message-form" onSubmit={(e) => sendMessage(e)}>
+          <TextField id="message-input" value={message} onChange={(e) => setMessage(e.target.value)} variant="outlined" />{" "}
+          <Button id="message-btn" type="submit" variant="contained" color="primary" style={{marginLeft: "5px"}}>Send</Button>
+        </form>
+        <br />
       </Container>
     </Layout>
   );

@@ -18,7 +18,7 @@ export default function getUser() {
     "familyName": profile.getFamilyName(),
     "imageUrl": profile.getImageUrl(),
     "email": profile.getEmail(),
-    signOut: profile.signOut,
+    signOut: authInstance.signOut,
   };
 
   return user;
