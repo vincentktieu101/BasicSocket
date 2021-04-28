@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+#messages-view {
+  height: 65vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+}
+
+@media (max-width: 700px) {
+  #messages-view {
+    height: 45vh;
+  }
+}
+
+#message-form {
+  display: flex;
+  width: 100%;
+}
+
+#message-input {
+  width: 100vw;
+}
+
+#message {
+  margin: 0 10px;
+}

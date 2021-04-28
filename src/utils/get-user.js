@@ -12,13 +12,13 @@ export default function getUser() {
 
   const profile = authInstance.currentUser.get().getBasicProfile();
   const user = {
-    "ID": profile.getId(),
-    "fullName": profile.getName(),
-    "givenName": profile.getGivenName(),
-    "familyName": profile.getFamilyName(),
-    "imageUrl": profile.getImageUrl(),
-    "email": profile.getEmail(),
-    signOut: profile.signOut,
+    ID: profile.getId(),
+    fullName: profile.getName(),
+    givenName: profile.getGivenName(),
+    familyName: profile.getFamilyName(),
+    imageUrl: profile.getImageUrl(),
+    email: profile.getEmail(),
+    signOut: authInstance.signOut,
   };
 
   return user;
