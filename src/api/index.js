@@ -6,9 +6,9 @@ const server = require("http").createServer(app);
 const io = require("socket.io")(server, { cors: { origin: process.env.CORS } });
 app.use(express.static(path.join(__dirname, "../../build")));
 
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
+// app.get("/api", (req, res) => {
+//   res.json({ message: "Hello from server!" });
+// });
 
 var messages = new Array(15).fill({
   author: "",
@@ -21,7 +21,7 @@ io.on("connection", (socket) => {
   socket.emit("messages", messages);
 
   socket.on("message", (message) => {
-    if (message === "/clear") {
+    if (message.text === "/clear") {
       messages = new Array(15).fill({
         author: "",
         authorImage: "",
