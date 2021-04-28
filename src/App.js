@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import CheckingSignedIn from "./pages/CheckingSignedIn";
 
+import CheckingSignedIn from "./pages/CheckingSignedIn";
 import Home from "./pages/Home";
-import Profile from "./pages/Profile";
 import Private from "./pages/Private";
 import PageNotFound from "./pages/PageNotFound";
 
@@ -15,7 +14,7 @@ export default function App() {
     script.src = "https://apis.google.com/js/platform.js";
     script.onload = () => initGoogleSignIn();
     document.body.appendChild(script);
-  }, []);
+  }, [isSignedIn]);
 
   function initGoogleSignIn() {
     window.gapi.load("auth2", () => {
@@ -33,6 +32,11 @@ export default function App() {
           });
         });
     });
+    window.gapi.load("signin2", () => {
+      window.gapi.signin2.render("login-button", {
+        theme: "dark",
+      });
+    });
   }
 
   function PrivateRoute(props) {
@@ -40,19 +44,14 @@ export default function App() {
     if (isSignedIn === null) {
       return <CheckingSignedIn />;
     }
-    return (
-      <Route
-        {...rest}
-        component={isSignedIn ? component : Private}
-      />
-    );
+    return <Route {...rest} component={isSignedIn ? component : Private} />;
   }
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Home} />
-        <PrivateRoute exact path="/profile" component={Profile} />
+        {/* <PrivateRoute exact path="/profile" component={Profile} /> */}
         <Route path="/" component={PageNotFound} />
       </Switch>
     </BrowserRouter>

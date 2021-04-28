@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -7,31 +7,20 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 export default function NavBar(props) {
   const user = props.user;
 
-  useEffect(() => {
-    if (window.gapi) {
-      window.gapi.load("signin2", () => {
-        window.gapi.signin2.render("login-button", {
-          theme: "dark",
-        });
-      });
-    }
-  });
-
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="/">Vincent's ChatApp</Navbar.Brand>
+        <Navbar.Brand href="/" style={{fontFamily: "Oswald"}}><h4>VINCENT'S CHAT APP</h4></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-          </Nav>
+          <Nav className="mr-auto"></Nav>
           <Nav>
             {!user ? (
               <div id="login-button" />
             ) : (
               <NavDropdown
                 title={
-                  <span>
+                  <span style={{color: "white"}}>
                     Hello, {user.fullName}{" "}
                     <img
                       src={user.imageUrl}
